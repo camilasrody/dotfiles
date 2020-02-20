@@ -63,6 +63,9 @@ brew cleanup 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew cleanup;
 # checks for configuration issues
 brew doctor 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew doctor; exit code was ${code}"
 
+# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
+alias mac.update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
+
 # Clear quicklook macos cache
 qlmanage -r cache
 

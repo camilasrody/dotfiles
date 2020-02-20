@@ -147,7 +147,7 @@ alias a.inspect="inspect $@"
 alias not="notify $@"
 alias blog.rec=blog_rec.sh $@
 
-alias dot_update="dot && git fetch upstream && git checkout master && git merge upstream/master"
+alias dotfiles_update="cd && git fetch upstream && git checkout master && git merge upstream/master"
 
 function docker_reset {
 	docker stop $(docker ps -a -q)
@@ -201,9 +201,6 @@ alias pbcopynn='tr -d "\n" | pbcopy'
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec \$SHELL -l"
-
-# Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias mac.update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; mas upgrade; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 alias launchpad.save="lporg save ~/.launchpad.yaml && dot && git add homedir/.launchpad.yaml && git commit -m '♻️  - Launchpad updated' && git push"
 
