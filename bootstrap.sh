@@ -1,5 +1,5 @@
 # Edit this line to set your own remote
-THIS_REPO=https://github.com/thomasgroch/dotfiles.git
+THIS_REPO=https://github.com/camilasrody/dotfiles.git
 
 # where $BARE_DOTFILES directory is a git bare repository.
 BARE_DOTFILES=$HOME/.bare-dotfiles
