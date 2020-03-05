@@ -1,2 +1,2 @@
 # update system (At minute 0 past every 10th hour.)
-0 */10 * * * exec $HOME/.dotfiles/update.sh >$HOME/logs/job.system-update.`date +\%Y-\%m-\%d-\%H:\%M:\%S-cron.log` 2>&1
+0 */10 * * * exec $HOME/update.sh >$HOME/logs/job.system-update.`date +\%Y-\%m-\%d-\%H:\%M:\%S-cron.log` 2>&1

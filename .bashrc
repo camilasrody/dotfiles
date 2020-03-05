@@ -1,6 +1,7 @@
 #
 # ~/.bashrc
 #
+# export PATH=/bin:${PATH}
 
 [[ $- != *i* ]] && return
 

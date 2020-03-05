@@ -108,6 +108,8 @@ brew "reattach-to-user-namespace"
 brew "screen"
 brew "asciinema"
 brew "tmux"
+# The cross-shell prompt for astronauts
+brew "starship"
 # a Docker manager for the terminal
 brew "dry"
 # Cross platform, open source .NET development framework

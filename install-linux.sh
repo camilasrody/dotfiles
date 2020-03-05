@@ -124,11 +124,6 @@ mkdir -p ~/blog;ok
 running "Create logs folder in home directory"
 mkdir -p ~/logs;ok
 
-pushd scripts/ > /dev/null 2>&1
-running "Downloading App-Every "
-curl -O https://raw.githubusercontent.com/iarna/App-Every/master/packed/every && chmod a+x every;ok
-popd > /dev/null 2>&1
-
 ###############################################################################
 bot "The End"
 ###############################################################################

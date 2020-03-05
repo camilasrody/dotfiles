@@ -2,11 +2,14 @@
 # Uncomment for speed debug
 # zmodload zsh/zprof
 
+# Enable shell integration in tmux
+export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
+
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
-export ZSH_THEME="robbyrussell"
+# export ZSH_THEME="robbyrussell"
 # export ZSH_THEME="spaceship"
 
 # Powerlevel9k Settings
@@ -84,6 +87,7 @@ plugins+=(colorize)
 plugins+=(history)
 plugins+=(osx)
 plugins+=(cp)
+plugins+=(tmuxinator)
 plugins+=(zsh-z)
 plugins+=(zsh-autosuggestions)
 plugins+=(zsh-completions)
@@ -93,6 +97,8 @@ if [[ "$OS" == "Linux" ]]; then
 fi
 
 [ -r $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+[ -r $ZSH/custom/.colored_man_pages.zsh ] && source $ZSH/custom/.colored_man_pages.zsh
+[ -r $ZSH/custom/tmuxinator.zsh ] && source $ZSH/custom/tmuxinator.zsh
 
 # npx as default fallback command
 # source <(npx --shell-auto-fallback zsh)
@@ -104,9 +110,19 @@ fi
 # Advanced Tab completion
 autoload -Uz compinit && compinit
 # Now can be use code that calls compdef
+# [ -z "$TMUX" ] && { exec /usr/local/bin/tmux -CC new-session -A -s main && exit;}
+# The -A flag makes new-session behave like 
+	# attach-session if session-name already exists
 
+# tmux -CC attach || tmux -CC
+
+# if [[ -z $TMUX ]]; then
+# 	echo 'no tmux'
+# else
+# 	echo "yes tmux: ${TMUX}"
+# fi
 # Is this needed?
-# if [[ -n $TMUX ]]; then
+# if [[ -z $TMUX ]]; then
 	[ -r $HOME/.profile ] && source $HOME/.profile
 # fi
 
@@ -144,6 +160,8 @@ alias zsh_is_loading="zsh -o SOURCE_TRACE"
 
 # make rbenv load automatically when open Terminal
 eval "$(rbenv init -)"
+
+eval "$(starship init zsh)"
 
 # https://github.com/nvbn/thefuck#manual-installation
 # eval $(thefuck --alias)
