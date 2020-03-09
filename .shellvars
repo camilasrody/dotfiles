@@ -30,8 +30,8 @@ export BARE_DOTFILES=$HOME/.bare-dotfiles
 # Tool paths
 #########################################################################
 # Remove forward-char widgets from ACCEPT
-[[ ! $SHELL == "/bin/bash" ]] && \
-	ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
+# yelds true if shell is not interactive 16935422
+[[ ${-#*i} != ${-} ]] && ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=("${(@)ZSH_AUTOSUGGEST_ACCEPT_WIDGETS:#forward-char}")
 
 # Add forward-char widgets to PARTIAL_ACCEPT
 ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(forward-char)

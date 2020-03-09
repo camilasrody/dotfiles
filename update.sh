@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # fail hard
 set -o pipefail
@@ -7,11 +7,14 @@ set -o pipefail
 # fail no variables
 set -u
 IFS=$'\n\t'
+source ~/.profile
+
+echo "start"
 CURRENT_LOG_FILE=$(ls -rt ~/logs/ | tail -n1)
 BEAUTIFUL_LOG_FILE="${CURRENT_LOG_FILE}.png"
 
-source ~/.shellvars
-source ~/.shellpaths
+# source ~/.shellvars
+# source ~/.shellpaths
 
 # function finish {
 #     # re-link system's python
@@ -70,16 +73,14 @@ alias mac.update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cle
 qlmanage -r cache
 
 # Upgrade Oh-my-zsh
-upgrade_oh_my_zsh
+# upgrade_oh_my_zsh
 
 # Remote Notification
 TEXT=$(printf "\
 ==============\n \
 HOSTNAME: "`hostname`"\n\
 WAN IP: "`dig +short myip.opendns.com @resolver1.opendns.com`"\n\
-\n\n\
-Update History Log:\n\
-`cat ~/logs/$CURRENT_LOG_FILE`\
+Update History Log: "`cat ~/logs/$CURRENT_LOG_FILE`"\n\
 ")
 # npx --quiet telemify "${TEXT}\n"
 

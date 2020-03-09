@@ -11,7 +11,9 @@ EOF
 ###############################################################################
 # Development section
 ###############################################################################
-alias sync.all="rsync -rtavuc --delete --progress ${1}/.[^.]* ${2}"
+function sync_all(){
+	rsync -rtavuc --delete --progress ${1}/.[^.]* ${2}
+}
 alias youtube="mpsyt"
 alias s="sublimetext"
 alias weather="curl -s 'http://wttr.in/Curitiba?lang=pt'"
@@ -182,8 +184,8 @@ alias "mynexts"='echo "Finding issues available for contributing, based on my тн
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 alias sl="lf $@"
-alias l="colorls --long --group-directories-first --almost-all --git-status"
-alias j="lsd -la"
+alias j="colorls --long --group-directories-first --almost-all --git-status"
+alias l="lsd -la"
 alias qq="cat ~/.zsh_history | grep "
 alias ww="which "
 alias ee="open https://litewrite.net/"
@@ -311,6 +313,7 @@ alias pacc="php artisan config:cache"
 alias pacl="php artisan config:clear"
 alias pas="php artisan serve"
 # alias composer="docker run -v $(pwd):/app -w /app composer"
+alias npm_cache_proxy="docker run -e REDIS_ADDRESS=host.docker.internal:6379 -p 6660:8080 -it -d pkgems/npm-cache-proxy && npm config set registry http://localhost:6660"
 
 # push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
 alias pushup="git-up && git push"
