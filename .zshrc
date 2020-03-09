@@ -9,7 +9,7 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
-# export ZSH_THEME="robbyrussell"
+export ZSH_THEME="robbyrussell"
 # export ZSH_THEME="spaceship"
 
 # Powerlevel9k Settings
@@ -161,7 +161,7 @@ alias zsh_is_loading="zsh -o SOURCE_TRACE"
 # make rbenv load automatically when open Terminal
 eval "$(rbenv init -)"
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # https://github.com/nvbn/thefuck#manual-installation
 # eval $(thefuck --alias)
