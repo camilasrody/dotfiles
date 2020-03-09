@@ -8,4 +8,4 @@
   # https://github.com/blog/180-local-github-config
 	user = camilasrody
 [credential]
-    helper = pass-git-helper -m ~/.config/pass-git-helper/git-pass-mapping.ini
+    helper = /usr/local/bin/pass-git-helper -m ~/.config/pass-git-helper/git-pass-mapping.ini
