@@ -1,4 +1,5 @@
 #!/bin/sh
+
 function pass_insert(){
     expect << EOF
 spawn $1
@@ -305,7 +306,7 @@ alias nah="git reset --hard && git clean -df"
 # git remote add personal https://gitlab.com/asd/qwe.git
 # git push personal
 
-# LARAVEL
+# Laravel
 # alias laratail="tail -f $(find /laravel/storage/logs | tail -n 1)"
 alias laratest="php artisan config:clear && phpunit"
 alias laratestrand="php artisan config:clear && $HOME/.composer/vendor/fiunchinho/phpunit-randomizer/bin/phpunit-randomizer --colors --order rand"
@@ -313,6 +314,8 @@ alias pacc="php artisan config:cache"
 alias pacl="php artisan config:clear"
 alias pas="php artisan serve"
 # alias composer="docker run -v $(pwd):/app -w /app composer"
+# docker run -v $(pwd):/app -w /app composer
+# docker run -v `pwd`/src:/src composer create-project --prefer-dist laravel/laravel src/$1
 alias npm_cache_proxy="docker run -e REDIS_ADDRESS=host.docker.internal:6379 -p 6660:8080 -it -d pkgems/npm-cache-proxy && npm config set registry http://localhost:6660"
 
 # push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
@@ -519,7 +522,7 @@ if test -z $GITLABCMD; then
     # allows to source zshrc twice
     export GITLABCMD=$(which gitlab 2> /dev/null)
 
-	init_gitlab() {
+	gitlab_init() {
 		json=$(gitlab create_project "$1" "{ description: '$2' }" --json)
 		http_url_to_repo=$(echo $json | jq .result.http_url_to_repo)
 		http_url_to_repo="${http_url_to_repo%\"}"
@@ -529,7 +532,7 @@ if test -z $GITLABCMD; then
 		git push -u origin master
 	}
 
-	# delete_gitlab() {
+	# gitlab_delete() {
 	# 	json=$(gitlab delete_project $1 --json)
 	# }
 fi
@@ -548,108 +551,6 @@ function init_npm {
 	npm init -y
 }
 
-# function a.create_bash_package() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	npx oclif multi "${name}"
-# 	mkdir -p $name && cd $name
-# 	a.sort_package_json
-	
-# 	bpkg init
-# 	init_npm webstorm
-# 	git add -A
-# 	git commit -m "Initial commit"
-# 	init_gitlab $name $description
-
-# 	npx okimdone
-# }
-# function a.create_vuepress_project() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	mkdir -p $name && cd $name
-# 	init_git
-# 	init_npm webstorm
-# 	init_gitlab $name $description
-# 	npx okimdone
-# }
-# function a.create_node_project() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	mkdir -p $name && cd $name && mkdir src && touch src/index.js
-# 	init_git
-# 	init_npm webstorm
-# 	init_gitlab $name $description
-# 	# heroku git:remote -a $name
-# 	npx okimdone
-# }
-# function a.create_laravel_project() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	composer create-project --prefer-dist laravel/laravel $name && cd $name
-# 	init_git
-# 	init_npm laravel phpstorm
-# 	init_gitlab $name $description
-# 	# heroku git:remote -a $name
-# 	npx okimdone
-# }
-# function a.create_vue_app() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	npx @vue/cli create $name && cd $name && \
-# 	init_npm node webstorm && \
-# 	init_gitlab $name $description
-# 	npx okimdone
-# }
-
-# function a.create_vue_app_storybook() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	npx @vue/cli create $name
-# 	cd $name && \
-# 	init_npm node webstorm && \
-# 	# init_gitlab $name $description
-# 	yarn add --dev @storybook/vue
-# 	yarn add vue
-# 	yarn add  --dev vue-loader vue-template-compiler @babel/core babel-loader babel-preset-vue
-# 	# "storybook": "start-storybook"
-# 	mkdir -p ./.storybook/
-# 	mkdir -p ./src/stories/
-# 	cat > ./.storybook/config.js << EOF
-# import { configure } from '@storybook/vue';
-# import HelloWorld from '../src/components/HelloWorld.vue';
-
-# configure(require.context('../src', true, /\.stories\.js$/), module);
-# Vue.component('hello-world', HelloWorld)
-# EOF
-# 	cat > ./src/stories/HelloWorld.stories.js << EOF
-# import Vue from 'vue';
-# import HelloWorld from '../components/HelloWorld.vue';
-
-# export default { title: 'Button' };
-
-# export const withText = () => '<hello-world>with text</hello-world>';
-
-# export const withEmoji = () => '<hello-world>😀 😎 👍 💯</hello-world>';
-
-# export const asAComponent = () => ({
-#   components: { HelloWorld },
-#   template: '<hello-world :rounded="true">rounded</hello-world>'
-# });
-# EOF
-
-# 	npx okimdone
-# 	start-storybook
-# }
-
-# function a.create_react_app() {
-# 	name=${1:-'my-app'}
-# 	description=${2:-'my-app description'}
-# 	npx create-react-app $name && cd $name
-# 	init_git
-# 	init_npm node webstorm
-# 	init_gitlab $name $description
-# 	npx okimdone
-# }
 alias f.rm_all_node_modules="find . -name 'node_modules' -exec rm -rf '{}' +"
 
 alias a.rm_node_modules_reyarn_redev="rm -Rf node_modules && rm yarn.lock && yarn; yarn dev"

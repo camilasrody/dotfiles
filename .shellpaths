@@ -6,16 +6,19 @@ export PATH=/bin:/usr/bin:$USR_PATH/sbin:$HOME/bin:$USR_PATH/bin:${PATH}
 export PATH=$PATH:$HOME/.composer/vendor/bin
 
 # GO
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+# export PATH=$PATH:$GOPATH/bin 
+# export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$USR_PATH/opt/go/libexec/bin
 
 # Ruby
 # or use specific version
-export PATH=$PATH:$USR_PATH/opt/ruby/bin
-export PATH=$PATH:$USR_PATH/opt/ruby@2.5/bin
-export PATH=$PATH:$USR_PATH/.rbenv/bin
+# export PATH=$PATH:$USR_PATH/opt/ruby/bin
+# export PATH=$PATH:$USR_PATH/opt/ruby@2.5/bin
+# export PATH=$PATH:$USR_PATH/.rbenv/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
+
+# Python
+# export PYTHONPATH=
 
 # Node
 export PATH=$PATH:$HOME/.local/bin

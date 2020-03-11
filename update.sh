@@ -33,7 +33,10 @@ BEAUTIFUL_LOG_FILE="${CURRENT_LOG_FILE}.png"
 brew update 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew update; exit code was ${code}\n"
 # brew upgrade 2>&1 >/dev/null;			code=$?; [[ code -ne 0 ]] && echo "brew upgrade; exit code was ${code}\n"
 
-# Update npm & packages
+# Update composer packages
+composer global update
+
+# Update npm & yarn packages
 # yarn update -g
 # npm update -g
 

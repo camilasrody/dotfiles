@@ -110,6 +110,8 @@ brew "asciinema"
 brew "tmux"
 # The cross-shell prompt for astronauts
 brew "starship"
+# Docker Machine Parallels Driver
+brew "docker-machine-parallels"
 # a Docker manager for the terminal
 brew "dry"
 # Cross platform, open source .NET development framework
@@ -490,6 +492,8 @@ cask "dia"
 cask "zettlr"
 cask "typora"
 cask "vnc-viewer"
+# Free instant messaging that connect to AIM, XMPP (Jabber), ICQ, IRC and more
+brew "adium"
 cask "transmit-disk"
 cask "karabiner-elements"
 # cask "gpg-suite"

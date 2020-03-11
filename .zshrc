@@ -20,7 +20,7 @@ export ZSH_THEME="robbyrussell"
 # https://github.com/bhilburn/powerlevel9k/wiki/Stylizing-Your-Prompt
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir nvm vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
-# 
+#
 # colorcode test
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
 # POWERLEVEL9K_NVM_FOREGROUND='000'
@@ -62,7 +62,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 plugins+=(gpg-agent)
-plugins+=(ssh-agent)
+#plugins+=(ssh-agent)
 plugins+=(gnu-utils)
 plugins+=(pass)
 plugins+=(k)
@@ -81,7 +81,7 @@ plugins+=(httpie)
 plugins+=(ansible)
 plugins+=(compleat)
 plugins+=(dirpersist)
-plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right. 
+plugins+=(dircycle) # cycle your directory stack {left,right} using Ctrl+Shift+Left/Right.
 plugins+=(copyfile)
 plugins+=(colorize)
 plugins+=(history)
@@ -111,7 +111,7 @@ fi
 autoload -Uz compinit && compinit
 # Now can be use code that calls compdef
 # [ -z "$TMUX" ] && { exec /usr/local/bin/tmux -CC new-session -A -s main && exit;}
-# The -A flag makes new-session behave like 
+# The -A flag makes new-session behave like
 	# attach-session if session-name already exists
 
 # tmux -CC attach || tmux -CC
@@ -162,6 +162,8 @@ alias zsh_is_loading="zsh -o SOURCE_TRACE"
 eval "$(rbenv init -)"
 
 # eval "$(starship init zsh)"
+
+source $(dirname $(gem which colorls))/tab_complete.sh
 
 # https://github.com/nvbn/thefuck#manual-installation
 # eval $(thefuck --alias)
