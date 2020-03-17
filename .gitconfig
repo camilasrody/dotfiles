@@ -4,6 +4,9 @@
 [includeIf "gitdir:~/"]
   path = ~/.config/git/.gitconfig-personal
 
+[includeIf "gitdir:~/dev/"]
+  path = ~/.config/git/.gitconfig-personal
+
 [includeIf "gitdir:~/hero/"]
   path = ~/.config/git/.gitconfig-hero
 

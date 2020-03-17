@@ -493,7 +493,7 @@ cask "zettlr"
 cask "typora"
 cask "vnc-viewer"
 # Free instant messaging that connect to AIM, XMPP (Jabber), ICQ, IRC and more
-brew "adium"
+cask "adium"
 cask "transmit-disk"
 cask "karabiner-elements"
 # cask "gpg-suite"

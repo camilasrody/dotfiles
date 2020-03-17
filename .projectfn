@@ -1,0 +1,105 @@
+#!/bin/sh
+
+
+# function a.create_bash_package() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx oclif multi "${name}"
+# 	mkdir -p $name && cd $name
+# 	a.sort_package_json
+	
+# 	bpkg init
+# 	init_npm webstorm
+# 	git add -A
+# 	git commit -m "Initial commit"
+# 	gitlab_init $name $description
+
+# 	npx okimdone
+# }
+# function a.create_vuepress_project() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	mkdir -p $name && cd $name
+# 	init_git
+# 	init_npm webstorm
+# 	gitlab_init $name $description
+# 	npx okimdone
+# }
+# function a.create_node_project() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	mkdir -p $name && cd $name && mkdir src && touch src/index.js
+# 	init_git
+# 	init_npm webstorm
+# 	gitlab_init $name $description
+# 	# heroku git:remote -a $name
+# 	npx okimdone
+# }
+function a.create_laravel_project() {
+	name=${1:-'my-app'}
+	description=${2:-'my-app description'}
+	composer create-project --prefer-dist laravel/laravel $name && cd $name
+	init_git
+	init_npm laravel phpstorm
+	gitlab_init $name $description
+	# heroku git:remote -a $name
+	npx okimdone
+}
+# function a.create_vue_app() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx @vue/cli create $name && cd $name && \
+# 	init_npm node webstorm && \
+# 	gitlab_init $name $description
+# 	npx okimdone
+# }
+
+# function a.create_vue_app_storybook() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx @vue/cli create $name
+# 	cd $name && \
+# 	init_npm node webstorm && \
+# 	# gitlab_init $name $description
+# 	yarn add --dev @storybook/vue
+# 	yarn add vue
+# 	yarn add  --dev vue-loader vue-template-compiler @babel/core babel-loader babel-preset-vue
+# 	# "storybook": "start-storybook"
+# 	mkdir -p ./.storybook/
+# 	mkdir -p ./src/stories/
+# 	cat > ./.storybook/config.js << EOF
+# import { configure } from '@storybook/vue';
+# import HelloWorld from '../src/components/HelloWorld.vue';
+
+# configure(require.context('../src', true, /\.stories\.js$/), module);
+# Vue.component('hello-world', HelloWorld)
+# EOF
+# 	cat > ./src/stories/HelloWorld.stories.js << EOF
+# import Vue from 'vue';
+# import HelloWorld from '../components/HelloWorld.vue';
+
+# export default { title: 'Button' };
+
+# export const withText = () => '<hello-world>with text</hello-world>';
+
+# export const withEmoji = () => '<hello-world>😀 😎 👍 💯</hello-world>';
+
+# export const asAComponent = () => ({
+#   components: { HelloWorld },
+#   template: '<hello-world :rounded="true">rounded</hello-world>'
+# });
+# EOF
+
+# 	npx okimdone
+# 	start-storybook
+# }
+
+# function a.create_react_app() {
+# 	name=${1:-'my-app'}
+# 	description=${2:-'my-app description'}
+# 	npx create-react-app $name && cd $name
+# 	init_git
+# 	init_npm node webstorm
+# 	gitlab_init $name $description
+# 	npx okimdone
+# }
