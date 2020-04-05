@@ -8,7 +8,7 @@
   path = ~/.config/git/.gitconfig-personal
 
 [includeIf "gitdir:~/hero/"]
-  path = ~/.config/git/.gitconfig-hero
+  path = ~/.config/git/.gitconfig-personal
 
 [includeIf "gitdir:~/company/"]
   path = ~/.config/git/.gitconfig-company

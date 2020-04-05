@@ -12,6 +12,35 @@ EOF
 ###############################################################################
 # Development section
 ###############################################################################
+function see_my_school() {
+  token="$(curl -s 'https://core.myedools.com/users/sign_in' \
+               -H 'authority: core.myedools.com' \
+               -H 'pragma: no-cache' \
+               -H 'cache-control: no-cache' \
+               -H 'accept: application/json, text/plain, */*' \
+               -H 'origin: https://camila-rody.myedools.com' \
+               -H 'content-type: application/json;charset=UTF-8' \
+               -H 'sec-fetch-site: same-site' \
+               -H 'sec-fetch-mode: cors' \
+               -H 'referer: https://camila-rody.myedools.com/admin' \
+               --data-binary '{"user":{"email":"camila.rody@herospark.com","password":"herospark123456"},"realm":{"id":8726,"subdomain":"camila-rody","type":"School","name":"💰","theme_id":2660,"theme_protected":false,"email":"camila.rody@herospark.com","big_brother":false,"organization_id":8051,"restrict_ips":[]}}' \
+               --compressed | jq '.credentials' --raw-output)"
+
+  API_URL=https://camila-rody.myedools.com/
+  params=$(curl -s ${API_URL}themes/params)
+  school_id=$(echo $params | jq .school.id)
+  theme_id=$(echo $params | jq .school.theme_id)
+  cat theme.json | \
+  school_id=$school_id jq '.production.school_id=env.school_id' | \
+  theme_id=$theme_id jq '.production.theme_id=env.theme_id' | \
+  token=$token jq '.production.token=env.token' | \
+  API_URL=$API_URL jq '.production.url=env.API_URL'
+}
+function set_my_school(){
+  tmp=$(mktemp)
+  see_my_school > "$tmp" && mv "$tmp" theme.json
+}
+
 function sync_all(){
 	rsync -rtavuc --delete --progress ${1}/.[^.]* ${2}
 }

@@ -163,7 +163,7 @@ eval "$(rbenv init -)"
 
 # eval "$(starship init zsh)"
 
-source $(dirname $(gem which colorls))/tab_complete.sh
+# source $(dirname $(gem which colorls))/tab_complete.sh
 
 if [[ "$OS" == "Linux" ]]; then
 	test -d \~/.linuxbrew && eval $(\~/.linuxbrew/bin/brew shellenv)
