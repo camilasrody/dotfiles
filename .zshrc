@@ -9,8 +9,7 @@ export ITERM_ENABLE_SHELL_INTEGRATION_WITH_TMUX=YES
 export ZSH=$HOME/.oh-my-zsh
 
 # export ZSH_THEME="powerlevel9k/powerlevel9k"
-export ZSH_THEME="robbyrussell"
-# export ZSH_THEME="spaceship"
+# export ZSH_THEME="robbyrussell"
 
 # Powerlevel9k Settings
 # if you want to use this, change your non-ascii font to Droid Sans Mono for Awesome
@@ -161,7 +160,7 @@ alias zsh_is_loading="zsh -o SOURCE_TRACE"
 # make rbenv load automatically when open Terminal
 eval "$(rbenv init -)"
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 eval "$(starship init zsh)"
 

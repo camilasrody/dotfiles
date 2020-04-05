@@ -4,6 +4,9 @@
 [includeIf "gitdir:~/"]
   path = ~/.config/git/.gitconfig-personal
 
+[includeIf "gitdir:~/blog/"]
+  path = ~/.config/git/.gitconfig-personal
+
 [includeIf "gitdir:~/dev/"]
   path = ~/.config/git/.gitconfig-personal
 
@@ -256,9 +259,7 @@
     # autosetuprebase = always
 
 [credential]
-	# helper = osxkeychain
 	useHttpPath = true
-	helper = store
 
 [filter "tabspace"]
   clean = expand -t 4
