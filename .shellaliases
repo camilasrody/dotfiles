@@ -97,20 +97,43 @@ alias mk="minikube"
 
 alias p="gopass $@"
 
+# usages:
+#  genpass "sites/example.com"
+#  genpass "sites/example.com" 8 "username"
 function genpass {
-	pass generate --no-symbols --clip $1 ${2:-16}
-	read -n 1 -r -p "Press any key to continue"
-	echo "user:${GIT_COMMITTER_EMAIL}\nurl:${1}" | pbcopy
-	gopass edit $1
-}
+	source $HOME/lib_sh/echos.sh
+	entry=$1
+	url=$(echo $entry| sed -e 's/.*\///g')
+	user=${3:-$GIT_AUTHOR_EMAIL}
+	password_length=${2:-16}
 
-function gensite {
-	pass generate --no-symbols --clip "sites/${1}" ${2:-16}
-	read -n 1 -r -p "Press any key to continue"
-	echo "user:${GIT_COMMITTER_EMAIL}\nurl:${1}" | pbcopy
-	gopass edit "sites/${1}"
+	running "generating ${entry} password.."
+	expect << EOF
+	  spawn gopass generate $@ --force
+	  sleep 1
+	  expect "How long should the password be?"
+	  send -- "$password_length"
+	  send "\r"
+	  expect "Do you have strict rules to include different character classes?"
+	  send "N\r"
+	  expect "Do you want to continue?"
+	  send "y\r"
+	  expect eof
+EOF
+	ok
+	running "setting user.."
+	printf "${user}" | gopass insert $entry user;ok
+	running "setting user.."
+	printf "${url}" | gopass insert $entry url;ok
+	
+	# read -t 7 -r -p "Auto sync? (y|N) [default=y] " response; echo ;
+	echo "Auto sync? (y|N) [default=y] "
+	read -t 7 -r response; echo ;
+	response=${response:-y}
+	if [[ $response =~ (yes|y|Y) ]];then
+		gopass sync
+	fi
 }
-
 
 alias pass_update="gopass update --no-symbols --clip $@"
 # PHP
@@ -207,6 +230,7 @@ function exploit_this_cms {
 # Dev
 alias encriptar="gpg --encrypt --recipient thomas.groch@gmail.com "
 alias decriptar="gpg --decrypt "
+alias pid_gpg_agent="pgrep -x gpg-agent"
 
 alias "mynexts"='echo "Finding issues available for contributing, based on my ⭐️ repositories...\n"; docker run -e TOKEN=$MIGHTY_WATCHER_GITHUB_TOKEN --rm igorperikov/mighty-watcher:latest'
 
@@ -346,6 +370,7 @@ alias pas="php artisan serve"
 # docker run -v $(pwd):/app -w /app composer
 # docker run -v `pwd`/src:/src composer create-project --prefer-dist laravel/laravel src/$1
 alias npm_cache_proxy="docker run -e REDIS_ADDRESS=host.docker.internal:6379 -p 6660:8080 -it -d pkgems/npm-cache-proxy && npm config set registry http://localhost:6660"
+alias npm_cache_proxy_off="npm config set registry "
 
 # push git repo, but first, use git-up to make sure you are in sync and rebased with the remote
 alias pushup="git-up && git push"
@@ -364,6 +389,11 @@ function git_backup {
 ###############################################################################
 # Sysadmin section
 ###############################################################################
+
+function mkreadonly(){ 
+	echo -n '' > $1 && \
+	chmod 444 $1
+}
 
 alias logfun="tail -f /var/log/nginx/access.log | logstalgia --sync"
 
@@ -779,5 +809,6 @@ elif [[ "$(uname -s)" == "Linux" ]]; then
 	alias mount_ESP="sudo mkdir -p /mnt/ESP && sudo mount -t msdos /dev/disk0s1 /mnt/ESP"
 	alias linux_kernel="journalctl -afn100"
 	alias linux_update="sudo pacman -Syyu"
+	alias pacman_rm_corrupt_packages='sudo find /var/cache/pacman/pkg/ -iname "*.part" -delete'
 
 fi

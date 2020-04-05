@@ -1,6 +1,13 @@
 # Brew
 # homebrews ($USR_PATH/bin) should always take precedence
-export PATH=/bin:/usr/bin:$USR_PATH/sbin:$HOME/bin:$USR_PATH/bin:${PATH}
+# export PATH=ASD:${PATH}
+export PATH=/usr/local/bin:/usr/local/sbin:~/bin:$PATH
+# export PATH=/bin:/usr/bin:$USR_PATH/sbin:$HOME/bin:$USR_PATH/bin:${PATH} # Redudant?
+# export PATH=$USR_PATH/sbin:${PATH}
+
+if [[ "$OS" == "Linux" ]]; then
+	export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+fi
 
 # PHP
 export PATH=$PATH:$HOME/.composer/vendor/bin
@@ -13,8 +20,9 @@ export PATH=$PATH:$USR_PATH/opt/go/libexec/bin
 # Ruby
 # or use specific version
 # export PATH=$PATH:$USR_PATH/opt/ruby/bin
-# export PATH=$PATH:$USR_PATH/opt/ruby@2.5/bin
+# export PATH=$PATH:$USR_PATH/opt/ruby@2.4/bin
 # export PATH=$PATH:$USR_PATH/.rbenv/bin
+export PATH=$PATH:$USR_PATH/lib/ruby/gems/2.7.0/bin
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Python
