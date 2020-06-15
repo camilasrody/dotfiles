@@ -1,7 +1,7 @@
 [user]
 	name = Camila Silva Rody
 	email = camilasrody@gmail.com
-	signingkey = camilasrody@gmail.com
+	signingkey = 0x7115C3AFAD3FB084
   # Is it safe to share your gitconfig's user.signingkey value with the world?
   # https://security.stackexchange.com/a/153582
 [github]
