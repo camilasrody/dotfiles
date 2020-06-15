@@ -9,4 +9,4 @@
 	user = camilasrody
 
 [credential]
-  helper = /usr/local/bin/pass-git-helper -m ~/.config/pass-git-helper/git-pass-mapping.ini
+    helper = pass-git-helper -m ~/.config/pass-git-helper/git-pass-mapping.ini
